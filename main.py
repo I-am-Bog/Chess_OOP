@@ -80,8 +80,11 @@ class Game:
 
                 self.move_count -= 1
                 self.current_turn = 'black' if self.current_turn == 'white' else 'white'
-                Piece.last_move = (self.board.position_to_indices(self.move_history[-1][1]),
-                                   self.board.position_to_indices(self.move_history[-1][2]))
+                try:
+                    Piece.last_move = (self.board.position_to_indices(self.move_history[-1][1]),
+                                       self.board.position_to_indices(self.move_history[-1][2]))
+                except IndexError:
+                    Piece.last_move = []
                 continue
 
 
